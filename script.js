@@ -1,3 +1,28 @@
+// Chặn menu chuột phải
+      document.addEventListener("contextmenu", (e) => e.preventDefault());
+
+      // Chặn chọn văn bản (không tuyệt đối)
+      document.addEventListener("selectstart", (e) => e.preventDefault());
+
+      // Chặn kéo thả
+      document.addEventListener("dragstart", (e) => e.preventDefault());
+      document.addEventListener("keydown", (e) => {
+        const k = e.key.toLowerCase();
+
+        // F12
+        if (e.key === "F12") e.preventDefault();
+
+        // Ctrl+Shift+I / J / C (Chrome/Edge)
+        if (e.ctrlKey && e.shiftKey && (k === "i" || k === "j" || k === "c"))
+          e.preventDefault();
+
+        // Ctrl+U (view source)
+        if (e.ctrlKey && k === "u") e.preventDefault();
+
+        // Cmd+Opt+I (macOS)
+        if (e.metaKey && e.altKey && k === "i") e.preventDefault();
+      });
+
 // 1. DỮ LIỆU SẢN PHẨM (Mảng Đối Tượng - Chương 7)
 const products = [
     { id: 1, name: "Bánh Chưng Tranh Khúc", price: 150000, img: "./img/banhchung.webp" },
@@ -80,3 +105,4 @@ function addToCart(product) {
 // === CHẠY CHƯƠNG TRÌNH ===
 
 renderProducts();
+
